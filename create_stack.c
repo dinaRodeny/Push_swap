@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: delroudi <delroudi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 21:12:04 by user              #+#    #+#             */
-/*   Updated: 2026/11/16 17:13:04 by delroudi         ###   ########.fr       */
+/*   Updated: 2026/11/17 23:05:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,30 @@ void add_node_back(t_stack_node **stack, int value)
 	new->prev = last;
 
 }
-int	get_stack_size(t_stack_node *st)
+int	get_stack_size(t_stack_node *stack)
 {
-	int size = 0;
-	t_stack_node *current = st->next;
+	int	size;
 
-	while (current)
+	size = 0;
+	while (stack)
 	{
 		size++;
-		current = current->next;
+		stack = stack->next;
 	}
-	return size;
+	return (size);
+}
+
+void	free_stack(t_stack_node  **stack)
+{
+	t_stack_node *tmp;
+
+	if (!stack || !(*stack))
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+	*stack = NULL;
 }

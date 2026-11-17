@@ -21,7 +21,14 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -I libs
 
 
-SRC =  create_stack.c\
+SRC = create_stack.c\
+	 main.c\
+	 errorhandling.c\
+	 push.c\
+	 swap.c\
+	 rotate.c\
+	 rev_rotate.c\
+	 sorting.c\
 	
 
 OBJ = $(SRC:.c=.o)

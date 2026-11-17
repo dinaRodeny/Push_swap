@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: delroudi <delroudi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 21:55:07 by user              #+#    #+#             */
-/*   Updated: 2026/11/16 17:32:12 by delroudi         ###   ########.fr       */
+/*   Updated: 2026/11/17 22:25:30 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,14 @@ void sb(t_stack_node **b);
 void ss(t_stack_node **a, t_stack_node **b);
 void pa(t_stack_node **a, t_stack_node **b);
 void pb(t_stack_node **b, t_stack_node **a);
+void ra(t_stack_node **a);
+void rra(t_stack_node **a);
+void rb(t_stack_node **b);
+void rrb(t_stack_node **b);
+void rrr(t_stack_node **a, t_stack_node **b);
+void error_exit(t_stack_node **stack_a, t_stack_node  **stack_b);
+int	is_duplicate_number(t_stack_node *stack);
+void free_stack(t_stack_node **stack);
+void bubble_sort(t_stack_node **a);
+void radix_sort(t_stack_node **a, t_stack_node **b);
 #endif
