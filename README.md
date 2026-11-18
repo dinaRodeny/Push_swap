@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by delroudi, erde-leo*
+*This project has been created as part of the 42 curriculum by delroudi, erde-leo.*
 
 # push_swap
 
@@ -44,15 +44,6 @@ make re
 
 The program will output the sequence of instructions required to sort the numbers onto standard output. If no arguments are provided, it returns immediately without output. If invalid arguments are detected (non-integers, duplicates, or values exceeding INT_MIN/INT_MAX), it displays Error on the standard error output (stderr).
 
-```c
-#include ".h"
-#include <fcntl.h>
-#include <stdio.h>
-
-int main(void)
-{
-    
-```
 
 ### How to use it in your projects
 
@@ -145,6 +136,7 @@ How it works: Using the normalized positive indices (0 to N - 1), we implement a
 AI was used as a complementary learning tool during the development of this project for:
 
 * **Conceptual Understanding:** Comparing the theoretical operation counts of Chunk Sort versus Binary Radix Sort across different input sizes (N = 100 and N = 500) and understanding bit wise manipulation for index-normalized Radix Sort.
+* **Algorithm Selection and Strategy:** Choosing the best sorting approach. AI can explain and compare different strategies (such as Radix Sort for simplicity and efficiency with large stacks, or Cost-Analysis / Chunk Sort algorithms for minimizing total operations).
 * **Edge Cases and test generation:** Generating randomized integer permutations and boundary test cases (e.g., INT_MAX, INT_MIN, duplicate inputs, and already-sorted arrays) to stress-test our parser and sorting routines.
 
 * *Note: All code and implementations have been individually written, verified, and tested by the authors.*
