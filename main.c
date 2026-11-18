@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 			add_node_back(&a, ft_atoi(values[j]));
 			j++;
 		}
+		print_stack(a);
 		j = 0;
 		while (values[j])
 			free(values[j++]);
