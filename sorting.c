@@ -6,11 +6,22 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 22:26:14 by user              #+#    #+#             */
-/*   Updated: 2026/11/17 23:06:19 by user             ###   ########.fr       */
+/*   Updated: 2026/11/19 23:47:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	is_sorted(t_stack_node *stack)
+{
+	while (stack && stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
 
 void	bubble_sort(t_stack_node **a)
 {
@@ -82,7 +93,7 @@ void	radix_sort(t_stack_node **a, t_stack_node **b)
 	int				bit;
 	int				i;
 
-	if (!a || !*a || !b)
+	if (!a || !*a || !b || is_sorted(*a))
 		return ;
 	size = get_stack_size(*a);
 	if (size < 2)
