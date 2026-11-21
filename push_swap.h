@@ -35,6 +35,7 @@ int		append_node(t_stack_node **stack, int value);
 int		stack_init(t_stack_node **stack, int argc, char **argv);
 int	get_stack_size(t_stack_node *st);
 int		parse_number(const char *str, int *number);
+int index_disorder(t_stack_node *stack);
 void sa(t_stack_node **a);
 void sb(t_stack_node **b);
 void ss(t_stack_node **a, t_stack_node **b);
