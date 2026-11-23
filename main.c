@@ -13,7 +13,7 @@ int	main(int argc, char **argv)
 	if (!stack_init(&a, argc, argv))
 		error_exit(&a, &b);
     if (bench.enabled)
-        bench.disorder = get_disorder_percent(a);
+        bench.disorder = calc_disorder_pct(a);
 	algo_adaptive(&a, &b);
     if (bench.enabled)
         print_bench(&bench, "Adaptive", "O(n log n)");
