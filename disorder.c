@@ -12,6 +12,20 @@
 
 #include "push_swap.h"
 
+double	calc_disorder_pct(t_stack_node *stack)
+{
+	int		size;
+	double	inversions;
+	double	total_pairs;
+
+	size = get_stack_size(stack);
+	if (size < 2)
+		return (0.0);
+	inversions = (double)index_disorder(stack);
+	total_pairs = ((double)size * ((double)size - 1.0)) / 2.0;
+	return ((inversions / total_pairs) * 100.0);
+}
+
 int index_disorder(t_stack_node *stack)
 {
 	t_stack_node	*current;
