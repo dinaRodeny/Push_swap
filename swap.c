@@ -33,22 +33,37 @@ static int	swap(t_stack_node **stack)
 	return (1);
 }
 
-void sa(t_stack_node **a)
+void sa(t_stack_node **a, t_bench *bench)
 {
-	if (swap(a)) //Si el swap se hace con éxito
-		write(1,"sa\n",3);  //imprimimos la instrucción
+	if (swap(a))
+	{
+		write(1,"sa\n",3);
+		if (bench)
+			bench->sa += 1;
+	}
 }
 
-void sb(t_stack_node **b)
+void sb(t_stack_node **b, t_bench *bench)
 {
-	if (swap(b)) //Si el swap se hace con éxito
-		write(1,"sb\n",3);  //imprimimos la instrucción
+	if (swap(b))
+	{
+		write(1,"sb\n",3);
+		if (bench)
+			bench->sb += 1;
+	}
 }
 
-void ss(t_stack_node **a, t_stack_node **b)
+void ss(t_stack_node **a, t_stack_node **b, t_bench *bench)
 {
-	if (swap(a) || swap(b)) //Si el swap se hace con éxito
-		write(1,"ss\n",3);  //imprimimos la instrucción
-}
+	int	did_a;
+	int	did_b;
 
-	
+	did_a = swap(a);
+	did_b = swap(b);
+	if (did_a || did_b)
+	{
+		write(1,"ss\n",3);
+		if (bench)
+			bench->ss += 1;
+	}
+}
