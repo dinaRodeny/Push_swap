@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP_H
-# define FT_PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 # include <stddef.h>
 # include <stdint.h>
 # include <stdlib.h>
@@ -19,14 +19,15 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <limits.h>
+/*do we need to add libft in some way?*/
 
 typedef struct s_stack_node
 {
     int value;
     int index;
-    struct s_stack_node * next;
-    struct s_stack_node * prev;
-}t_stack_node;
+    struct s_stack_node *next;
+    struct s_stack_node *prev;
+}	t_stack_node;
 
 typedef struct s_bench
 {
@@ -63,6 +64,7 @@ void    pb(t_stack_node **b, t_stack_node **a);
 void    ra(t_stack_node **a);
 void    rra(t_stack_node **a);
 void    rb(t_stack_node **b);
+void 	rr(t_stack_node **a, t_stack_node **b);
 void    rrb(t_stack_node **b);
 void    rrr(t_stack_node **a, t_stack_node **b);
 void    error_exit(t_stack_node **stack_a, t_stack_node  **stack_b);
@@ -72,7 +74,10 @@ void	sort_three(t_stack_node **a);
 void	bring_min_to_top(t_stack_node **a, int size);
 void	sort_up_to_five(t_stack_node **a, t_stack_node **b);
 void	algo_adaptive(t_stack_node **a, t_stack_node **b);
-void    bubble_sort(t_stack_node **a);
-void    medium * missing
+void    bubble_sort(t_stack_node **a); /*is this going to change to selection_sort?*/
+/*void  medium algorithm missing chunk_sort?*/
 void    radix_sort(t_stack_node **a, t_stack_node **b);
+void    print_bench(t_bench *bench, const char *strategy, const char *complex);
+void	init_bench(t_bench *bench);
+void	detect_bench_flag(int argc, char **argv, t_bench *bench);
 #endif
