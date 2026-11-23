@@ -40,14 +40,22 @@ static int  push(t_stack_node **dst, t_stack_node **src)
   return (1);
 }
 
-void pa(t_stack_node **a, t_stack_node **b)
+void pa(t_stack_node **a, t_stack_node **b, t_bench *bench)
 {
 	if (push(a, b))
+	{
 		write(1,"pa\n",3);
+		if (bench)
+			bench->pa += 1;
+	}
 }
 
-void pb(t_stack_node **b, t_stack_node **a)
+void pb(t_stack_node **b, t_stack_node **a, t_bench *bench)
 {
 	if (push(b, a))
+	{
 		write(1,"pb\n",3);
+		if (bench)
+			bench->pb += 1;
+	}
 }
