@@ -12,15 +12,15 @@
 
 #include "push_swap.h"
 
-static void	sort_two(t_stack_node **a)
+static void	sort_two(t_stack_node **a, t_bench *bench)
 {
 	if (!a || !*a || !(*a)->next)
 		return ;
 	if ((*a)->value > (*a)->next->value)
-		sa(a);
+		sa(a, bench);
 }
 
-static void	sort_three(t_stack_node **a)
+static void	sort_three(t_stack_node **a, t_bench *bench)
 {
 	int	top;
 	int	mid;
@@ -34,11 +34,11 @@ static void	sort_three(t_stack_node **a)
 	mid = (*a)->next->value;
 	bot = (*a)->next->next->value;
 	if (top > mid && top > bot)
-		ra(a);
+		ra(a, bench);
 	else if (mid > top && mid > bot)
-		rra(a);
+		rra(a, bench);
 	if ((*a)->value > (*a)->next->value)
-		sa(a);
+		sa(a, bench);
 }
 
 static int	find_min_pos(t_stack_node *stack)
@@ -65,7 +65,7 @@ static int	find_min_pos(t_stack_node *stack)
 	return (min_pos);
 }
 
-static void	bring_min_to_top(t_stack_node **a, int size)
+static void	bring_min_to_top(t_stack_node **a, int size, t_bench *bench)
 {
 	int	min_pos;
 	int	moves;
@@ -74,17 +74,17 @@ static void	bring_min_to_top(t_stack_node **a, int size)
 	if (min_pos <= size / 2)
 	{
 		while (min_pos-- > 0)
-			ra(a);
+			ra(a, bench);
 	}
 	else
 	{
 		moves = size - min_pos;
 		while (moves-- > 0)
-			rra(a);
+			rra(a, bench);
 	}
 }
 
-void	sort_up_to_five(t_stack_node **a, t_stack_node **b)
+void	sort_up_to_five(t_stack_node **a, t_stack_node **b, t_bench *bench)
 {
 	int	size;
 
@@ -94,24 +94,24 @@ void	sort_up_to_five(t_stack_node **a, t_stack_node **b)
 		return ;
 	size = get_stack_size(*a);
 	if (size == 2)
-		sort_two(a);
+		sort_two(a, bench);
 	else if (size == 3)
-		sort_three(a);
+		sort_three(a, bench);
 	else
 	{
 		while (size > 3)
 		{
-			bring_min_to_top(a, size);
-			pb(a, b);
+			bring_min_to_top(a, size, bench);
+			pb(b, a, bench);
 			size--;
 		}
-		sort_three(a);
+		sort_three(a, bench);
 		while (b && *b)
-			pa(a, b);
+			pa(a, b, bench);
 	}
 }
 
-void	algo_adaptive(t_stack_node **a, t_stack_node **b)
+void	algo_adaptive(t_stack_node **a, t_stack_node **b, t_bench *bench)
 {
 	int			size;
 	long long	disorder;
@@ -126,19 +126,19 @@ void	algo_adaptive(t_stack_node **a, t_stack_node **b)
 		return ;
 	if (size <= 5)
 	{
-		sort_up_to_five(a, b);
+		sort_up_to_five(a, b, bench);
 		return ;
 	}
 	else
 	{
 		disorder = index_disorder(*a);
-		max_pairs = ((long long)size * (size -1)) / 2;
+		max_pairs = ((long long)size * (size - 1)) / 2;
 		if (disorder * 100 <= max_pairs * 20)
-			selection_sort(a, b);
+			selection_sort(a, b, bench);
 		else if (disorder * 100 <= max_pairs * 60)
-			chunk_sort(a, b);
+			chunk_sort(a, b, bench);
 		else
-			radix_sort(a, b);
+			radix_sort(a, b, bench);
 	}
 	return ;
 }
