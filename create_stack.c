@@ -62,6 +62,11 @@ int	stack_init(t_stack_node **stack, int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
+		if (ft_strncmp(argv[i], "--bench", 8) == 0)
+		{
+			i++;
+			continue;
+		}
 		values = ft_split(argv[i], ' ');
 		if (!values || !values[0])
 		{
@@ -85,7 +90,6 @@ int	stack_init(t_stack_node **stack, int argc, char **argv)
 	if (is_duplicate_number(*stack))
 		return (0);
 	return (1);
-
 }
 
 int	append_node(t_stack_node **stack, int value)
