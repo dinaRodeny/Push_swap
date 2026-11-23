@@ -31,20 +31,37 @@ static int  rev_rotate(t_stack_node **stack)
 	  return (1);
 }
 
-void  rra(t_stack_node **a)
+void	rra(t_stack_node **a, t_bench *bench)
 {
-  if (rev_rotate (a))
-    write (1, "rra\n", 4);
+	if (rev_rotate(a))
+	{
+		write(1, "rra\n", 4);
+		if (bench)
+			bench->rra += 1;
+	}
 }
 
-void  rrb(t_stack_node **b)
+void	rrb(t_stack_node **b, t_bench *bench)
 {
-  if (rev_rotate (b))
-    write (1, "rrb\n", 4);
+	if (rev_rotate(b))
+	{
+		write(1, "rrb\n", 4);
+		if (bench)
+			bench->rrb += 1;
+	}
 }
 
-void  rrr(t_stack_node **a, t_stack_node **b)
+void	rrr(t_stack_node **a, t_stack_node **b, t_bench *bench)
 {
-  if (rev_rotate (a) || rev_rotate (b))
-    write (1, "rrr\n", 4);
+	int	did_a;
+	int	did_b;
+
+	did_a = rev_rotate(a);
+	did_b = rev_rotate(b);
+	if (did_a || did_b)
+	{
+		write(1, "rrr\n", 4);
+		if (bench)
+			bench->rrr += 1;
+	}
 }
