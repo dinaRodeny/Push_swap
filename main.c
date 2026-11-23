@@ -14,7 +14,7 @@ int	main(int argc, char **argv)
 		error_exit(&a, &b);
     if (bench.enabled)
         bench.disorder = calc_disorder_pct(a);
-	algo_adaptive(&a, &b);
+	algo_adaptive(&a, &b, &bench);
     if (bench.enabled)
         print_bench(&bench, "Adaptive", "O(n log n)");
 	free_stack_nodes(&a);
