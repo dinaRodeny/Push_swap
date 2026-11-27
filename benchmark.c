@@ -60,12 +60,12 @@ static void	print_ops_breakdown_stderr(t_bench *bench)
 	print_single_op("rrr", bench->rrr);
 }
 
-void    print_bench(t_bench *bench, const char *strategy, const char *complex)
+void	print_bench(t_bench *bench, const char *strategy, const char *complex)
 {
-    int total;
-    
-    if (!bench || !bench->enabled)
-        return ;
+	int	total;
+
+	if (!bench || !bench->enabled)
+		return ;
 	total = bench->sa + bench->sb + bench->ss
 		+ bench->pa + bench->pb
 		+ bench->ra + bench->rb + bench->rr

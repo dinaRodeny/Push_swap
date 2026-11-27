@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 21:55:07 by user              #+#    #+#             */
-/*   Updated: 2026/11/19 20:12:18 by user             ###   ########.fr       */
+/*   Updated: 2026/11/21 16:09:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <limits.h>
-/*do we need to add libft in some way?*/
+# include "libs/libft.h"
+# include "libs/ft_printf.h"
 
 typedef struct s_stack_node
 {
-    int value;
-    int index;
-    struct s_stack_node *next;
-    struct s_stack_node *prev;
+	int					value;
+	int					index;
+	int					rank;
+	struct s_stack_node	*next;
+	struct s_stack_node	*prev;
 }	t_stack_node;
 
 typedef struct s_bench
@@ -47,37 +49,37 @@ typedef struct s_bench
 	int		rrr;
 }	t_bench;
 
-t_stack_node    *create_node(int value);
-int    append_node(t_stack_node **stack, int value);
-int    stack_init(t_stack_node **stack, int argc, char **argv);
-int    get_stack_size(t_stack_node *st);
-int    parse_number(const char *str, int *number);
-int    index_disorder(t_stack_node *stack);
-int    is_duplicate_number(t_stack_node *stack);
-int    find_min_pos(t_stack_node *stack);
-void    print_stack(t_stack_node *stack);
-void    sa(t_stack_node **a);
-void    sb(t_stack_node **b);
-void    ss(t_stack_node **a, t_stack_node **b);
-void    pa(t_stack_node **a, t_stack_node **b);
-void    pb(t_stack_node **b, t_stack_node **a);
-void    ra(t_stack_node **a);
-void    rra(t_stack_node **a);
-void    rb(t_stack_node **b);
-void 	rr(t_stack_node **a, t_stack_node **b);
-void    rrb(t_stack_node **b);
-void    rrr(t_stack_node **a, t_stack_node **b);
-void    error_exit(t_stack_node **stack_a, t_stack_node  **stack_b);
-void    free_stack_nodes(t_stack_node **stack);
-void	sort_two(t_stack_node **a);
-void	sort_three(t_stack_node **a);
-void	bring_min_to_top(t_stack_node **a, int size);
-void	sort_up_to_five(t_stack_node **a, t_stack_node **b);
-void	algo_adaptive(t_stack_node **a, t_stack_node **b);
-void    bubble_sort(t_stack_node **a); /*is this going to change to selection_sort?*/
-/*void  medium algorithm missing chunk_sort?*/
-void    radix_sort(t_stack_node **a, t_stack_node **b);
-void    print_bench(t_bench *bench, const char *strategy, const char *complex);
-void	init_bench(t_bench *bench);
-void	detect_bench_flag(int argc, char **argv, t_bench *bench);
+t_stack_node	*create_node(int value);
+int				append_node(t_stack_node **stack, int value);
+int				stack_init(t_stack_node **stack, int argc, char **argv);
+int				get_stack_size(t_stack_node *stack);
+int				parse_number(const char *str, int *number);
+int				index_disorder(t_stack_node *stack);
+int				is_duplicate_number(t_stack_node *stack);
+void			print_stack(t_stack_node *stack);
+void			sa(t_stack_node **a, t_bench *bench);
+void			sb(t_stack_node **b, t_bench *bench);
+void			ss(t_stack_node **a, t_stack_node **b, t_bench *bench);
+void			pa(t_stack_node **a, t_stack_node **b, t_bench *bench);
+void			pb(t_stack_node **b, t_stack_node **a, t_bench *bench);
+void			ra(t_stack_node **a, t_bench *bench);
+void			rra(t_stack_node **a, t_bench *bench);
+void			rb(t_stack_node **b, t_bench *bench);
+void			rrb(t_stack_node **b, t_bench *bench);
+void			rr(t_stack_node **a, t_stack_node **b, t_bench *bench);
+void			rrr(t_stack_node **a, t_stack_node **b, t_bench *bench);
+void			error_exit(t_stack_node **a, t_stack_node **b);
+void			free_stack_nodes(t_stack_node **stack);
+void			sort_up_to_five(t_stack_node **a, t_stack_node **b,
+					t_bench *bench);
+void			algo_adaptive(t_stack_node **a, t_stack_node **b,
+					t_bench *bench);
+void			chunk_sort(t_stack_node **a, t_stack_node **b, t_bench *bench);
+void			radix_sort(t_stack_node **a, t_stack_node **b,
+					t_bench *bench);
+double			calc_disorder_pct(t_stack_node *stack);
+void			print_bench(t_bench *bench, const char *strategy,
+					const char *complex);
+void			init_bench(t_bench *bench);
+void			detect_bench_flag(int argc, char **argv, t_bench *bench);
 #endif

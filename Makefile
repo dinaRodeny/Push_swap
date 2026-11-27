@@ -1,67 +1,55 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: delroudi <delroudi@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/10/17 21:49:47 by user              #+#    #+#              #
-#    Updated: 2026/11/16 16:46:49 by delroudi         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-
-
-#complilador 
 NAME = push_swap
-LIBFT = libft.a
-PRINTF = libftprintf.a
+PROJECT_DIR = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+LIBFT = $(PROJECT_DIR)libft/libft.a
+PRINTF_DIR = $(PROJECT_DIR)../../printf/
+PRINTF = $(PRINTF_DIR)libftprintf.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I libs
+CFLAGS = -Wall -Wextra -Werror -I$(PROJECT_DIR)libs
 
+SRC = algo_adaptive.c \
+	bench_setup.c \
+	benchmark.c \
+	create_stack.c \
+	disorder.c \
+	errorhandling.c \
+	main.c \
+	push.c \
+	rev_rotate.c \
+	rotate.c \
+	sorting.c \
+	stack_utils.c \
+	swap.c
 
-SRC = create_stack.c\
-	 main.c\
-	 errorhandling.c\
-	 push.c\
-	 swap.c\
-	 rotate.c\
-	 rev_rotate.c\
-	 sorting.c\
-	
+OBJ = $(addprefix $(PROJECT_DIR), $(SRC:.c=.o))
+TARGET = $(PROJECT_DIR)$(NAME)
 
-OBJ = $(SRC:.c=.o)
+all: $(TARGET)
 
+$(TARGET): $(OBJ) $(LIBFT) $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $@
 
-RM = rm -f
-AR = ar rcs
-
-#Default Rule
-all: $(NAME)
-
-#implict rule fpor compiling
-#cc -Wall -Wextra -Werror
-
-%.o: %.c
+$(PROJECT_DIR)%.o: $(PROJECT_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(LIBFT):
+	$(MAKE) -C $(PROJECT_DIR)libft
 
-#ar -rcs libft.a *.o
-# Package library
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+$(PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
 
-# Clean object files
 clean:
 	$(RM) $(OBJ)
+	$(MAKE) -C $(PROJECT_DIR)libft clean
+	$(MAKE) -C $(PRINTF_DIR) clean
 
-# Clean all
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(TARGET)
+	$(MAKE) -C $(PROJECT_DIR)libft fclean
+	$(MAKE) -C $(PRINTF_DIR) fclean
 
-# Recompile everything
 re: fclean all
 
- # Phony targets (They are not real files)
+RM = rm -f
+
 .PHONY: all clean fclean re

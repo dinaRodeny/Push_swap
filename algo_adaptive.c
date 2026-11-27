@@ -114,8 +114,6 @@ void	sort_up_to_five(t_stack_node **a, t_stack_node **b, t_bench *bench)
 void	algo_adaptive(t_stack_node **a, t_stack_node **b, t_bench *bench)
 {
 	int			size;
-	long long	disorder;
-	long long	max_pairs;
 
 	if (!a || !b || !*a)
 		return ;
@@ -129,16 +127,5 @@ void	algo_adaptive(t_stack_node **a, t_stack_node **b, t_bench *bench)
 		sort_up_to_five(a, b, bench);
 		return ;
 	}
-	else
-	{
-		disorder = index_disorder(*a);
-		max_pairs = ((long long)size * (size - 1)) / 2;
-		if (disorder * 100 <= max_pairs * 20)
-			selection_sort(a, b, bench);
-		else if (disorder * 100 <= max_pairs * 60)
-			chunk_sort(a, b, bench);
-		else
-			radix_sort(a, b, bench);
-	}
-	return ;
+	chunk_sort(a, b, bench);
 }
