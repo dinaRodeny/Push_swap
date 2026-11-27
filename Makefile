@@ -1,7 +1,7 @@
 NAME = push_swap
 PROJECT_DIR = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 LIBFT = $(PROJECT_DIR)libft/libft.a
-PRINTF_DIR = $(PROJECT_DIR)../../printf/
+PRINTF_DIR = $(PROJECT_DIR)printf/
 PRINTF = $(PRINTF_DIR)libftprintf.a
 
 CC = cc
